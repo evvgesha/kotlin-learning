@@ -29,7 +29,7 @@ var status: String = "Подготовка"
 val sponsors: String = "Список спонсоров"
 
 // 10. Бюджет мероприятия
-val budget: Int = 500000
+private val budget: Int = 500000
 
 // 11. Текущий уровень доступа к интернету
 var internetAccess: String = "Хороший"
@@ -72,7 +72,7 @@ val privacyPolicy: String = "Политика конфиденциальност
 private var feedback: String = "Отзывов пока нет"
 
 // 23. Текущая температура в помещении
-var roomTemperature: Int = 22
+private var roomTemperature: Int = 22
     set(value) {
         if (value in -20..50) field = value
     }
@@ -82,13 +82,13 @@ val networkInfo: String
     get() = "Текущие данные сети"
 
 // 25. Регулятор скорости интернета в процентах, где 50 процентов равно коэффициенту 0.5
-private var internetSpeed: Int = 100
+private var internetSpeed: Int = 50
     set(value) {
         if (value in 0..100) field = value
     }
 
 // 26. Уровень освещения
-var lightLevel: Int = 70
+private var lightLevel: Int = 70
 
 // 27. Лог событий мероприятия
 private var eventLog: String = "Начало лога"
