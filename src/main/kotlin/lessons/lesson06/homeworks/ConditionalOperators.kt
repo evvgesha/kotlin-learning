@@ -17,12 +17,11 @@ fun printDogAgeInHumanYears(dogAge: Double) {
         return
     }
 
-    val humanAge = if (dogAge <= 2) {
-        dogAge * 10.5
+    if (dogAge <= 2) {
+        println(dogAge * 10.5)
     } else {
-        2 * 10.5 + (dogAge - 2) * 4
+        println(21 + (dogAge - 2) * 4)
     }
-    println(humanAge)
 }
 
 fun printTransport(distanceInKilometers: Double) {
@@ -41,14 +40,17 @@ fun printBonusPoints(purchaseAmount: Double) {
         return
     }
 
-    val hundreds = (purchaseAmount / 100).toInt()
-    val pointsPerHundred = if (purchaseAmount <= 1000) 2 else 3
-    println(hundreds * pointsPerHundred)
+    val fullHundreds = (purchaseAmount / 100).toInt()
+    if (purchaseAmount <= 1000) {
+        println(fullHundreds * 2)
+    } else {
+        println(fullHundreds * 3)
+    }
 }
 
 fun printDocumentType(extension: String) {
-    val normalizedExtension = extension.trim().removePrefix(".").lowercase()
-    val documentType = when (normalizedExtension) {
+    val fileExtension = extension.trim().removePrefix(".").lowercase()
+    val documentType = when (fileExtension) {
         "txt", "doc", "docx", "pdf" -> "Текстовый документ"
         "jpg", "jpeg", "png", "gif", "bmp" -> "Изображение"
         "xls", "xlsx", "csv" -> "Таблица"
@@ -61,13 +63,11 @@ fun convertTemperature(temperature: Double, unit: String) {
     when (unit.trim().uppercase()) {
         "C" -> {
             val fahrenheit = temperature * 9 / 5 + 32
-            print(fahrenheit)
-            print("F")
+            println("${fahrenheit}F")
         }
         "F" -> {
             val celsius = (temperature - 32) * 5 / 9
-            print(celsius)
-            print("C")
+            println("${celsius}C")
         }
         else -> println("Неизвестная единица измерения. Используйте C или F")
     }
