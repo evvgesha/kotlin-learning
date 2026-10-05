@@ -1,52 +1,53 @@
 package lessons.lesson08.homeworks
 
-// Преобразовать фразу по первому подходящему правилу и напечатать результат.
+// 1. Преобразовать фразу по первому подходящему правилу и напечатать результат.
 fun printFunnyPhrase(phrase: String) {
-    when {
+    val result = when {
         phrase.contains("невозможно") ->
-            println(phrase.replace("невозможно", "совершенно точно возможно, просто требует времени"))
+            phrase.replace("невозможно", "совершенно точно возможно, просто требует времени")
 
         phrase.startsWith("Я не уверен") ->
-            println("$phrase, но моя интуиция говорит об обратном")
+            "$phrase, но моя интуиция говорит об обратном"
 
         phrase.contains("катастрофа") ->
-            println(phrase.replace("катастрофа", "интересное событие"))
+            phrase.replace("катастрофа", "интересное событие")
 
         phrase.endsWith("без проблем") ->
-            println(phrase.replace("без проблем", "с парой интересных вызовов на пути"))
+            phrase.replace("без проблем", "с парой интересных вызовов на пути")
 
         phrase.trim().isNotEmpty() && !phrase.trim().contains(" ") ->
-            println("Иногда, ${phrase.trim()}, но не всегда")
+            "Иногда, ${phrase.trim()}, но не всегда"
 
-        else -> println(phrase)
+        else -> phrase
     }
+    println(result)
 }
 
-// Извлечь дату и время из строки лога и напечатать их по очереди.
+// 2. Извлечь дату и время из строки лога и напечатать их по очереди.
 fun printLogDateAndTime(log: String) {
     val dateAndTime = log.substringAfter("->").trim().split(" ")
     println(dateAndTime[0])
     println(dateAndTime[1])
 }
 
-// Скрыть все цифры номера карты, кроме последних четырёх.
+// 3. Скрыть все цифры номера карты, кроме последних четырёх.
 fun printMaskedCardNumber(cardNumber: String) {
     val digits = cardNumber.replace(" ", "")
     val hiddenDigits = "*".repeat(digits.length - 4)
     println(hiddenDigits + digits.takeLast(4))
 }
 
-// Заменить символы адреса электронной почты на слова.
+// 4. Заменить символы адреса электронной почты на слова.
 fun printFormattedEmail(email: String) {
     println(email.replace("@", " [at] ").replace(".", " [dot] "))
 }
 
-// Напечатать имя файла с расширением из полного пути.
+// 5. Напечатать имя файла с расширением из полного пути.
 fun printFileName(path: String) {
     println(path.substringAfterLast("/"))
 }
 
-// Составить и напечатать аббревиатуру из первых букв слов.
+// 6. Составить и напечатать аббревиатуру из первых букв слов.
 fun printAbbreviation(phrase: String) {
     val words = phrase.split(" ")
     var abbreviation = ""
