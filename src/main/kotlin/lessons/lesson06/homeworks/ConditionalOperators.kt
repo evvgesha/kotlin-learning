@@ -1,5 +1,6 @@
 package lessons.lesson06.homeworks
 
+// 1. По номеру месяца напечатать время года.
 fun printSeason(month: Int) {
     val season = when (month) {
         12, 1, 2 -> "Зима"
@@ -11,6 +12,7 @@ fun printSeason(month: Int) {
     println(season)
 }
 
+// 2. Перевести возраст собаки в человеческие годы.
 fun printDogAgeInHumanYears(dogAge: Double) {
     if (dogAge < 0) {
         println("Возраст собаки не может быть отрицательным")
@@ -24,6 +26,7 @@ fun printDogAgeInHumanYears(dogAge: Double) {
     }
 }
 
+// 3. Выбрать способ перемещения по длине маршрута.
 fun printTransport(distanceInKilometers: Double) {
     when {
         distanceInKilometers < 0 ->
@@ -34,6 +37,7 @@ fun printTransport(distanceInKilometers: Double) {
     }
 }
 
+// 4. Посчитать бонусные баллы за покупку.
 fun printBonusPoints(purchaseAmount: Double) {
     if (purchaseAmount < 0) {
         println("Сумма покупки не может быть отрицательной")
@@ -48,6 +52,7 @@ fun printBonusPoints(purchaseAmount: Double) {
     }
 }
 
+// 5. Определить тип документа по расширению файла.
 fun printDocumentType(extension: String) {
     val fileExtension = extension.trim().removePrefix(".").lowercase()
     val documentType = when (fileExtension) {
@@ -59,6 +64,7 @@ fun printDocumentType(extension: String) {
     println(documentType)
 }
 
+// 6. Перевести температуру из C в F или из F в C.
 fun convertTemperature(temperature: Double, unit: String) {
     when (unit.trim().uppercase()) {
         "C" -> {
@@ -73,6 +79,7 @@ fun convertTemperature(temperature: Double, unit: String) {
     }
 }
 
+// 7. Посоветовать одежду по температуре воздуха.
 fun printClothingRecommendation(temperature: Int) {
     when {
         temperature < -30 || temperature > 35 -> println("не выходить из дома")
@@ -82,6 +89,7 @@ fun printClothingRecommendation(temperature: Int) {
     }
 }
 
+// 8. Напечатать доступную категорию фильмов по возрасту.
 fun printMovieCategory(age: Int) {
     when {
         age < 0 -> println("Возраст не может быть отрицательным")
@@ -89,4 +97,15 @@ fun printMovieCategory(age: Int) {
         age <= 18 -> println("подростковые")
         else -> println("18+")
     }
+}
+
+fun main() {
+    printSeason(3)
+    printDogAgeInHumanYears(3.0)
+    printTransport(4.0)
+    printBonusPoints(1200.0)
+    printDocumentType("pdf")
+    convertTemperature(20.0, "C")
+    printClothingRecommendation(15)
+    printMovieCategory(16)
 }
