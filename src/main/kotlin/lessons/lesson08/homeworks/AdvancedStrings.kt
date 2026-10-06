@@ -62,3 +62,16 @@ fun multiplicationTable(start: Int, end: Int) {
         println()
     }
 }
+
+fun main() {
+    val task = 7 // Поменяй на 8 или 9, чтобы запустить другую задачу.
+
+    when (task) {
+        7 -> println(capitalWords("котлин лучший язык программирования"))
+        8 -> {
+            encrypt("Kotlin")
+            decrypt("oKltni")
+        }
+        9 -> multiplicationTable(1, 5)
+    }
+}

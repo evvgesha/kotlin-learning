@@ -1,168 +1,131 @@
 package lessons.lesson07.homeworks
 
-// Напечатать числа от 1 до 10.
-fun printNumbersFromOneToTen() {
+// 1. Вывести числа от 1 до 5.
+fun task1() {
+    for (number in 1..5) println(number)
+}
+
+// 2. Вывести чётные числа от 1 до 10.
+fun task2() {
     for (number in 1..10) {
-        println(number)
+        if (number % 2 == 0) println(number)
     }
 }
 
-// Напечатать квадраты чисел от 1 до 5.
-fun printSquaresFromOneToFive() {
-    for (number in 1..5) {
+// 3. Вывести числа от 5 до 1.
+fun task3() {
+    for (number in 5 downTo 1) println(number)
+}
+
+// 4. Вывести числа от 10 до 1, уменьшая их на 2.
+fun task4() {
+    for (number in 10 downTo 1 step 2) println(number)
+}
+
+// 5. Вывести числа от 1 до 9 с шагом 2.
+fun task5() {
+    for (number in 1..9 step 2) println(number)
+}
+
+// 6. Вывести каждое третье число от 1 до 20.
+fun task6() {
+    for (number in 1..20 step 3) println(number)
+}
+
+// 7. Вывести числа от 3 до size, не включая size, с шагом 2.
+fun task7() {
+    val size = 10
+    for (number in 3 until size step 2) println(number)
+}
+
+// 8. С помощью while вывести квадраты чисел от 1 до 5.
+fun task8() {
+    var number = 1
+    while (number <= 5) {
         println(number * number)
-    }
-}
-
-// Напечатать числа от 10 до 1 в обратном порядке.
-fun printNumbersFromTenToOne() {
-    for (number in 10 downTo 1) {
-        println(number)
-    }
-}
-
-// Напечатать чётные числа от 20 до 2 в обратном порядке.
-fun printEvenNumbersFromTwentyToTwo() {
-    for (number in 20 downTo 2 step 2) {
-        println(number)
-    }
-}
-
-// Напечатать каждое третье число в диапазоне от 1 до 30.
-fun printEveryThirdNumberToThirty() {
-    for (number in 1..30 step 3) {
-        println(number)
-    }
-}
-
-// Напечатать числа от 100 до 50 с шагом 5.
-fun printNumbersFromOneHundredToFifty() {
-    for (number in 100 downTo 50 step 5) {
-        println(number)
-    }
-}
-
-// Создать переменную длины списка и напечатать его индексы, начиная с нуля.
-fun printListIndexes() {
-    val length = 5
-    for (index in 0 until length) {
-        println(index)
-    }
-}
-
-// Сложить числа от 1 до 10 с помощью цикла while.
-fun printSumFromOneToTen() {
-    var number = 1
-    var sum = 0
-
-    while (number <= 10) {
-        sum += number
         number++
     }
-
-    println(sum)
 }
 
-// Посчитать цифры числа, начиная со 100 и уменьшая число на 1 после каждой итерации.
-fun printDigitCountsFromOneHundred() {
-    var number = 100
-
-    while (number > 0) {
-        println(countDigits(number))
-        number--
-    }
-}
-
-fun countDigits(number: Int): Int {
-    var remainingNumber = number
-    var digitCount = 0
-
-    while (remainingNumber > 0) {
-        digitCount++
-        remainingNumber /= 10
-    }
-
-    return digitCount
-}
-
-// Складывать числа от 1, пока сумма не станет больше 50. Использовать do while.
-fun printSumUntilOverFifty() {
-    var number = 1
-    var sum = 0
-
-    do {
-        sum += number
-        number++
-    } while (sum <= 50)
-
-    println(sum)
-}
-
-// Найти наибольшее целое число, факториал которого не больше 1000.
-fun printLargestFactorialNumberUnderOneThousand() {
-    var number = 1
-    var factorial = 1
-
-    while (factorial * (number + 1) <= 1000) {
-        number++
-        factorial *= number
-    }
-
+// 9. Уменьшить число от 10 до 5 с помощью while, затем вывести результат.
+fun task9() {
+    var number = 10
+    while (number > 5) number--
     println(number)
 }
 
-// Перебирать числа от 1 и остановиться на первом числе, которое делится на 7.
-fun printNumbersUntilMultipleOfSeven() {
-    var number = 1
-
-    while (true) {
-        if (number % 7 == 0) break
+// 10. С помощью do while вывести числа от 5 до 1.
+fun task10() {
+    var number = 5
+    do {
         println(number)
-        number++
-    }
+        number--
+    } while (number >= 1)
 }
 
-// Печатать числа от 1 и остановиться при достижении числа 25.
-fun printNumbersUntilTwentyFive() {
-    var number = 1
-
-    while (true) {
-        if (number == 25) break
-        println(number)
-        number++
-    }
+// 11. Повторять do while, пока счётчик меньше 10, начиная с 5.
+fun task11() {
+    var counter = 5
+    do {
+        println(counter)
+        counter++
+    } while (counter < 10)
 }
 
-// Напечатать числа от 1 до 10, пропуская 3 и 7.
-fun printNumbersExceptThreeAndSeven() {
+// 12. Перебрать числа от 1 до 10 и остановиться при достижении 6.
+fun task12() {
     for (number in 1..10) {
-        if (number == 3 || number == 7) continue
+        if (number == 6) break
         println(number)
     }
 }
 
-// Напечатать числа от 20 до 1, пропуская каждое четвёртое число.
-fun printNumbersFromTwentyToOneSkippingMultiplesOfFour() {
-    for (number in 20 downTo 1) {
-        if (number % 4 == 0) continue
+// 13. Выводить числа от 1 в цикле while и остановиться при достижении 10.
+fun task13() {
+    var number = 1
+    while (true) {
+        if (number == 10) break
+        println(number)
+        number++
+    }
+}
+
+// 14. В цикле for от 1 до 10 пропустить чётные числа.
+fun task14() {
+    for (number in 1..10) {
+        if (number % 2 == 0) continue
+        println(number)
+    }
+}
+
+// 15. В цикле while вывести числа от 1 до 10, пропуская кратные 3.
+fun task15() {
+    var number = 0
+    while (number < 10) {
+        number++
+        if (number % 3 == 0) continue
         println(number)
     }
 }
 
 fun main() {
-    printNumbersFromOneToTen()
-    printSquaresFromOneToFive()
-    printNumbersFromTenToOne()
-    printEvenNumbersFromTwentyToTwo()
-    printEveryThirdNumberToThirty()
-    printNumbersFromOneHundredToFifty()
-    printListIndexes()
-    printSumFromOneToTen()
-    printDigitCountsFromOneHundred()
-    printSumUntilOverFifty()
-    printLargestFactorialNumberUnderOneThousand()
-    printNumbersUntilMultipleOfSeven()
-    printNumbersUntilTwentyFive()
-    printNumbersExceptThreeAndSeven()
-    printNumbersFromTwentyToOneSkippingMultiplesOfFour()
+    val task = 1 // Поменяй число на номер задачи от 1 до 15.
+
+    when (task) {
+        1 -> task1()
+        2 -> task2()
+        3 -> task3()
+        4 -> task4()
+        5 -> task5()
+        6 -> task6()
+        7 -> task7()
+        8 -> task8()
+        9 -> task9()
+        10 -> task10()
+        11 -> task11()
+        12 -> task12()
+        13 -> task13()
+        14 -> task14()
+        15 -> task15()
+    }
 }
