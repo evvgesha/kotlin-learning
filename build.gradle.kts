@@ -15,7 +15,7 @@ kotlin {
 }
 
 application {
-    mainClass.set("MainKt")
+    mainClass.set("lessons.lesson10.homeworks.MapsKt")
 }
 
 tasks.test {

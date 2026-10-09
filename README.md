@@ -10,7 +10,7 @@
 
 ## Запуск
 
-Откройте проект в IntelliJ IDEA и запустите `src/main/kotlin/Main.kt`,
+Откройте проект в IntelliJ IDEA и запустите `src/main/kotlin/lessons/lesson10/homeworks/Maps.kt`,
 либо выполните:
 
 ```bash
