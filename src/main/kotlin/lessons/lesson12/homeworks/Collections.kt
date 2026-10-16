@@ -117,10 +117,10 @@ fun task15() {
     println(lengths)
 }
 
-// 16. Преобразовать текстовую коллекцию в мапу, где ключи - слова, а значения - перевёрнутые слова
+// 16. Преобразовать текстовую коллекцию в мапу, где ключи - перевёрнутые слова, а значения - длина слов
 fun task16() {
     val words = listOf("cat", "dog", "level", "kotlin")
-    val result = words.associateWith { it.reversed() }
+    val result = words.associate { it.reversed() to it.length }
     println(result)
 }
 
@@ -131,10 +131,10 @@ fun task17() {
     println(result)
 }
 
-// 18. Отсортировать список по убыванию
+// 18. Взять первые 3 элемента списка
 fun task18() {
-    val numbers = listOf(15, 3, 89, 42, 7)
-    val result = numbers.sortedDescending()
+    val numbers = listOf(10, 20, 30, 40, 50)
+    val result = numbers.take(3)
     println(result)
 }
 
@@ -158,10 +158,10 @@ fun task21() {
     println(result)
 }
 
-// 22. Взять первые 3 элемента списка
+// 22. Отсортировать список по убыванию
 fun task22() {
-    val numbers = listOf(10, 20, 30, 40, 50)
-    val result = numbers.take(3)
+    val numbers = listOf(15, 3, 89, 42, 7)
+    val result = numbers.sortedDescending()
     println(result)
 }
 
@@ -169,5 +169,104 @@ fun task22() {
 fun task23() {
     val numbers = listOf(10, 20, 30, 40, 50)
     val result = numbers.takeLast(3)
+    println(result)
+}
+
+// ==========================================
+// Задачи в отдельных функциях (24-29)
+// ==========================================
+
+// Задача 24. Характеристика числовой коллекции
+fun describeCollection(numbers: Collection<Int>): String {
+    return when {
+        numbers.isEmpty() -> "Пусто"
+        numbers.size < 5 -> "Короткая"
+        numbers.first() == 0 -> "Стартовая"
+        numbers.sum() > 10000 -> "Массивная"
+        numbers.average() == 10.0 -> "Сбалансированная"
+        numbers.joinToString("").length == 20 -> "Клейкая"
+        (numbers.maxOrNull() ?: 0) < -10 -> "Отрицательная"
+        (numbers.minOrNull() ?: 0) > 1000 -> "Положительная"
+        numbers.contains(3) && numbers.contains(14) -> "Пи***тая"
+        else -> "Уникальная"
+    }
+}
+
+fun task24() {
+    println(describeCollection(emptyList())) // Пусто
+    println(describeCollection(listOf(1, 2))) // Короткая
+    println(describeCollection(listOf(0, 1, 2, 3, 4))) // Стартовая
+    println(describeCollection(listOf(5000, 3000, 2001, 100, 50))) // Массивная
+    println(describeCollection(listOf(10, 10, 10, 10, 10))) // Сбалансированная
+    println(describeCollection(listOf(1234567890, 1234567890))) // Клейкая (20 символов)
+    println(describeCollection(listOf(-15, -20, -30, -40, -50))) // Отрицательная
+    println(describeCollection(listOf(1001, 2000, 3000, 4000, 5000))) // Положительная
+    println(describeCollection(listOf(3, 14, 1, 2, 5))) // Пи***тая
+    println(describeCollection(listOf(100, 200, 300, 400, 500))) // Уникальная
+}
+
+// Задача 25. Анализ учебных оценок
+fun analyzeGrades(grades: List<Int>): List<Int> {
+    return grades
+        .filter { it >= 60 }
+        .sorted()
+        .take(3)
+}
+
+fun task25() {
+    val grades = listOf(85, 58, 90, 74, 88, 67, 95, 92, 50, 42, 12)
+    val result = analyzeGrades(grades)
+    println(result)
+}
+
+// Задача 26. Создание каталога по первой букве
+val catalogSourceList = listOf(
+    "Стол", "табурет", "ваза", "Кружка", "Зеркало", "ковер", "Шкаф", "часы", "Люстра", "подушка", "Картина", "столик", "Вазон", "шторы", "Пуф", "книга", "Фоторамка", "светильник", "Коврик", "вешалка", "Подставка", "телевизор", "Комод", "полка", "Абажур", "диван", "Кресло", "занавеска", "Бра", "пепельница", "Глобус", "статуэтка", "Поднос", "фигурка", "Ключница", "плед", "Тумба", "игрушка", "Настенные часы", "подсвечник", "Журнальный столик", "сувенир", "Корзина для белья", "посуда", "Настольная лампа", "торшер", "Этажерка"
+)
+
+fun createCatalog(words: List<String>): Map<Char, List<String>> {
+    return words
+        .map { it.lowercase() }
+        .groupBy { it.first() }
+}
+
+fun task26() {
+    val catalog = createCatalog(catalogSourceList)
+    println(catalog)
+}
+
+// Задание 27. Подсчёт средней длины слов в списке
+fun averageWordLengthFormatted(words: List<String>): String {
+    val average = words.map { it.length }.average()
+    return String.format(java.util.Locale.US, "%.2f", average)
+}
+
+fun task27() {
+    val result = averageWordLengthFormatted(catalogSourceList)
+    println(result)
+}
+
+// Задание 28: Категоризация чисел
+fun categorizeNumbers(numbers: List<Int>): Map<String, List<Int>> {
+    return numbers
+        .distinct()
+        .sortedDescending()
+        .groupBy { if (it % 2 == 0) "четные" else "нечетные" }
+}
+
+fun task28() {
+    val numbers = listOf(1, 3, 5, 7, 3, 1, 8, 9, 9, 7)
+    val result = categorizeNumbers(numbers)
+    println(result)
+}
+
+// Задание 29: Поиск первого подходящего элемента
+fun findFirstMatchingAge(ages: List<Int?>, minAge: Int): Int? {
+    return ages.filterNotNull().firstOrNull { it > minAge }
+}
+
+fun task29() {
+    val ages = listOf(22, 18, 30, 45, 17, null, 60)
+    val result = findFirstMatchingAge(ages, 18)
     println(result)
 }
