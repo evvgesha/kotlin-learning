@@ -1,243 +1,129 @@
 package lessons.lesson13.homeworks
 
 fun main() {
-    task1()
-    task2()
-    task3()
-    task4()
-    task5()
-    task6()
-    task7()
-    task8()
-    task9()
-    task10()
-    task11()
-    task12()
-    task13()
-    task14()
-    task15()
-    task16()
-    task17()
-    task18()
-    task19()
-    task20()
-    task21()
-    task22()
-    task23()
-    task24()
-    task25()
-    task26()
-    task27()
-    task28()
-}
-
-// 1. Дан словарь с именем и временем выполнения каждого автоматизированного теста в секундах. Определите среднее время выполнения теста.
-fun task1() {
+    // 1. Среднее время выполнения теста
     val testTimes = mapOf("testLogin" to 2.5, "testCheckout" to 4.0, "testSearch" to 1.5)
-    val averageTime = testTimes.values.average()
-    println("Среднее время: $averageTime сек")
-}
+    println("Среднее время: ${testTimes.values.average()} сек")
 
-// 2. Имеется словарь с метаданными автоматизированных тестов, где ключи — это имена тестовых методов а значения - строка с метаданными. Выведите список всех тестовых методов.
-fun task2() {
+    // 2. Список всех тестовых методов
     val testMetadata = mapOf("testAuth" to "priority: high", "testProfile" to "priority: low")
-    val methods = testMetadata.keys.toList()
-    println(methods)
-}
+    println(testMetadata.keys.toList())
 
-// 3. В изменяемый словарь с данными о прохождении тестов добавьте новый тест и его результат.
-fun task3() {
+    // 3. Добавить новый тест и результат в изменяемый словарь
     val testResults = mutableMapOf("test1" to "passed")
     testResults["test2"] = "failed"
     println(testResults)
-}
 
-// 4. Посчитайте количество успешных тестов в словаре с результатами (ключ - название, значение - результат из passed, failed, skipped).
-fun task4() {
-    val testResults = mapOf("t1" to "passed", "t2" to "failed", "t3" to "passed", "t4" to "skipped")
-    val passedCount = testResults.count { it.value == "passed" }
-    println("Успешных тестов: $passedCount")
-}
+    // 4. Количество успешных тестов
+    val testStatuses = mapOf("t1" to "passed", "t2" to "failed", "t3" to "passed", "t4" to "skipped")
+    println("Успешных тестов: ${testStatuses.count { it.value == "passed" }}")
 
-// 5. Удалите из изменяемого словаря с баг-трекингом запись о баге, который был исправлен (ключ - название, значение - статус исправления).
-fun task5() {
+    // 5. Удалить исправленный баг
     val bugTracker = mutableMapOf("BUG-101" to "Open", "BUG-102" to "Fixed", "BUG-103" to "In Progress")
     bugTracker.remove("BUG-102")
     println(bugTracker)
-}
 
-// 6. Для словаря с результатами тестирования веб-страниц (ключ — URL страницы, значение — статус ответа), выведите сообщение о странице и статусе её проверки.
-fun task6() {
+    // 6. Сообщение о странице и статусе проверки
     val pageStatuses = mapOf("https://example.com/home" to 200, "https://example.com/login" to 404)
-    pageStatuses.forEach { (url, status) ->
-        println("Страница: $url, статус проверки: $status")
-    }
-}
+    pageStatuses.forEach { (url, status) -> println("Страница: $url, статус: $status") }
 
-// 7. Найдите в словаре с названием и временем ответа сервисов только те, время ответа которых превышает заданный порог.
-fun task7() {
-    val serviceResponseTimes = mapOf("auth-service" to 120, "payment-service" to 450, "notification-service" to 210)
-    val threshold = 200
-    val slowServices = serviceResponseTimes.filterValues { it > threshold }
-    println(slowServices)
-}
+    // 7. Сервисы с временем ответа выше порога
+    val serviceTimes = mapOf("auth-service" to 120, "payment-service" to 450, "notification-service" to 210)
+    println(serviceTimes.filterValues { it > 200 })
 
-// 8. В словаре хранятся результаты тестирования API (ключ — endpoint, значение — статус ответа в виде строки). Для указанного endpoint найдите статус ответа, если endpoint отсутствует, предположите, что он не был протестирован.
-fun task8() {
+    // 8. Статус ответа API endpoint
     val apiResults = mapOf("/api/v1/users" to "OK", "/api/v1/orders" to "Internal Server Error")
-    val status = apiResults.getOrDefault("/api/v1/products", "не был протестирован")
-    println(status)
-}
+    println(apiResults.getOrDefault("/api/v1/products", "не был протестирован"))
 
-// 9. Из словаря, содержащего конфигурации тестового окружения (ключ — название параметра конфигурации, значение - сама конфигурация), получите значение для "browserType". Ответ не может быть null.
-fun task9() {
+    // 9. Получить значение для browserType (not null)
     val envConfig = mapOf("browserType" to "Chrome", "timeout" to "30s")
     val browserType: String = envConfig.getValue("browserType")
     println(browserType)
-}
 
-// 10. Создайте копию неизменяемого словаря с данными о версиях тестируемого ПО, добавив новую версию.
-fun task10() {
+    // 10. Копия словаря с добавлением новой версии
     val versions = mapOf("app" to "1.0.0", "db" to "2.1.0")
-    val updatedVersions = versions + ("gateway" to "1.2.0")
-    println(updatedVersions)
-}
+    println(versions + ("gateway" to "1.2.0"))
 
-// 11. Используя словарь с настройками тестирования для различных мобильных устройств (ключ — модель устройства, значение - строка с настройками), получите настройки для конкретной модели или верните настройки по умолчанию.
-fun task11() {
+    // 11. Настройки для мобильного устройства или дефолт
     val mobileSettings = mapOf(
         "iPhone 14" to "orientation=portrait;resolution=1170x2532",
         "Pixel 7" to "orientation=landscape;resolution=1080x2400"
     )
-    val settings = mobileSettings.getOrElse("Galaxy S23") { "orientation=portrait;resolution=default" }
-    println(settings)
-}
+    println(mobileSettings.getOrElse("Galaxy S23") { "orientation=portrait;resolution=default" })
 
-// 12. Проверьте, содержит ли словарь с ошибками тестирования (ключ - код ошибки, значение - описание ошибки) определенный код ошибки.
-fun task12() {
+    // 12. Проверить код ошибки
     val errorCodes = mapOf(400 to "Bad Request", 404 to "Not Found", 500 to "Server Error")
-    val hasCode = errorCodes.containsKey(404)
-    println(hasCode)
-}
+    println(errorCodes.containsKey(404))
 
-// 13. Дан неизменяемый словарь, где ключи — это идентификаторы тестовых сценариев в формате "TestID_Version", а значения — статусы выполнения этих тестов ("Passed", "Failed", "Skipped"). Отфильтруйте словарь, оставив только те сценарии, идентификаторы которых соответствуют определённой версии тестов, то-есть в ключе содержится требуемая версия.
-fun task13() {
+    // 13. Фильтр сценариев по версии в ключе
     val testScenarios = mapOf("TC01_v1.0" to "Passed", "TC02_v2.0" to "Failed", "TC03_v1.0" to "Skipped")
-    val targetVersion = "v1.0"
-    val filteredScenarios = testScenarios.filterKeys { it.contains(targetVersion) }
-    println(filteredScenarios)
-}
+    println(testScenarios.filterKeys { it.contains("v1.0") })
 
-// 14. У вас есть словарь, где ключи — это названия функциональных модулей приложения, а значения — результаты их тестирования. Проверьте, есть ли модули с неудачным тестированием.
-fun task14() {
+    // 14. Проверка на наличие модулей с ошибкой
     val moduleResults = mapOf("Auth" to "Passed", "Payment" to "Failed", "Profile" to "Passed")
-    val hasFailed = moduleResults.values.any { it == "Failed" }
-    println(hasFailed)
-}
+    println(moduleResults.values.any { it == "Failed" })
 
-// 15. Добавьте в изменяемый словарь с настройками тестовой среды настройки из другого словаря.
-fun task15() {
+    // 15. Добавить настройки тестовой среды из другого словаря
     val mainEnv = mutableMapOf("os" to "Linux", "env" to "Stage")
-    val additionalEnv = mapOf("browser" to "Firefox", "retries" to "3")
-    mainEnv.putAll(additionalEnv)
+    mainEnv.putAll(mapOf("browser" to "Firefox", "retries" to "3"))
     println(mainEnv)
-}
 
-// 16. Объедините два неизменяемых словаря с данными о багах.
-fun task16() {
+    // 16. Объединить два словаря с данными о багах
     val bugsQ1 = mapOf("BUG-1" to "Crash on start", "BUG-2" to "UI glitch")
     val bugsQ2 = mapOf("BUG-3" to "Slow loading", "BUG-4" to "Missing icon")
-    val allBugs = bugsQ1 + bugsQ2
-    println(allBugs)
-}
+    println(bugsQ1 + bugsQ2)
 
-// 17. Очистите изменяемый словарь с временными данными о последнем прогоне автоматизированных тестов.
-fun task17() {
+    // 17. Очистить словарь с временными данными
     val tempRunData = mutableMapOf("lastRunId" to 12345, "duration" to 420)
     tempRunData.clear()
     println(tempRunData)
-}
 
-// 18. Исключите из отчета по автоматизированному тестированию те случаи, где тесты были пропущены (имеют статус “skipped”). Ключи - название теста, значения - статус.
-fun task18() {
+    // 18. Исключить тесты со статусом skipped
     val testReport = mapOf("testSearch" to "passed", "testLogin" to "skipped", "testCart" to "failed")
-    val reportWithoutSkipped = testReport.filterNot { it.value == "skipped" }
-    println(reportWithoutSkipped)
-}
+    println(testReport.filterNot { it.value == "skipped" })
 
-// 19. Создайте копию словаря с конфигурациями тестирования удалив из него несколько конфигураций.
-fun task19() {
+    // 19. Удалить конфигурации из словаря
     val testConfigs = mapOf("threads" to 4, "headless" to true, "debug" to false, "timeout" to 30)
-    val reducedConfigs = testConfigs - listOf("debug", "timeout")
-    println(reducedConfigs)
-}
+    println(testConfigs - listOf("debug", "timeout"))
 
-// 20. Создайте отчет о тестировании, преобразовав словарь с результатами тестирования (ключ — идентификатор теста, значение — результат) в список строк формата "Test ID: результат".
-fun task20() {
-    val testResults = mapOf("TC101" to "Passed", "TC102" to "Failed")
-    val reportList = testResults.map { (id, result) -> "$id: $result" }
-    println(reportList)
-}
+    // 20. Преобразовать словарь в отчет формата Test ID: результат
+    val runResults = mapOf("TC101" to "Passed", "TC102" to "Failed")
+    println(runResults.map { (id, res) -> "$id: $res" })
 
-// 21. Преобразуйте изменяемый словарь с результатами последнего тестирования в неизменяемый для архивации.
-fun task21() {
-    val latestRunResults = mutableMapOf("test1" to "passed", "test2" to "failed")
-    val archivedResults = latestRunResults.toMap()
-    println(archivedResults)
-}
+    // 21. Преобразовать изменяемый словарь в неизменяемый
+    val mutableResults = mutableMapOf("test1" to "passed", "test2" to "failed")
+    println(mutableResults.toMap())
 
-// 22. Преобразуйте словарь, содержащий числовой ID теста и данные о времени выполнения тестов, заменив идентификаторы тестов на их строковый аналог (например через toString()).
-fun task22() {
-    val numericTestTimes = mapOf(101 to 1.25, 102 to 3.40, 103 to 0.85)
-    val stringIdTestTimes = numericTestTimes.mapKeys { it.key.toString() }
-    println(stringIdTestTimes)
-}
+    // 22. Заменить числовые ID тестов на строковые
+    val numericTimes = mapOf(101 to 1.25, 102 to 3.40, 103 to 0.85)
+    println(numericTimes.mapKeys { it.key.toString() })
 
-// 23. Для словаря с оценками производительности различных версий приложения (ключи - строковая версия, значения - дробное число времени ответа сервера) увеличьте каждую оценку на 10%, чтобы учесть новые условия тестирования.
-fun task23() {
-    val performanceScores = mapOf("v1.0" to 150.0, "v1.1" to 120.0, "v2.0" to 95.0)
-    val adjustedScores = performanceScores.mapValues { it.value * 1.1 }
-    println(adjustedScores)
-}
+    // 23. Увеличить оценки времени ответа на 10%
+    val perfScores = mapOf("v1.0" to 150.0, "v1.1" to 120.0, "v2.0" to 95.0)
+    println(perfScores.mapValues { it.value * 1.1 })
 
-// 24. Проверьте, пуст ли словарь с ошибками компиляции тестов.
-fun task24() {
+    // 24. Проверить, пуст ли словарь с ошибками
     val compilationErrors = emptyMap<String, String>()
-    val isErrorsEmpty = compilationErrors.isEmpty()
-    println(isErrorsEmpty)
-}
+    println(compilationErrors.isEmpty())
 
-// 25. Убедитесь, что словарь с результатами нагрузочного тестирования не пуст.
-fun task25() {
+    // 25. Убедиться, что словарь нагрузочного тестирования не пуст
     val loadTestResults = mapOf("load_test_1" to "1000 rps reached")
-    val isLoadTestNotEmpty = loadTestResults.isNotEmpty()
-    println(isLoadTestNotEmpty)
-}
+    println(loadTestResults.isNotEmpty())
 
-// 26. Проверьте, прошли ли успешно все автоматизированные тесты в словаре с результатами.
-fun task26() {
-    val allTestResults = mapOf("testA" to "Passed", "testB" to "Passed", "testC" to "Passed")
-    val allPassed = allTestResults.values.all { it == "Passed" }
-    println(allPassed)
-}
+    // 26. Проверить, что все тесты прошли успешно
+    val allTests = mapOf("testA" to "Passed", "testB" to "Passed", "testC" to "Passed")
+    println(allTests.values.all { it == "Passed" })
 
-// 27. Определите, содержит ли словарь с результатами тестирования хотя бы один тест с ошибкой.
-fun task27() {
+    // 27. Содержит ли словарь хотя бы один тест с ошибкой
     val suiteResults = mapOf("testAuth" to "Success", "testPayment" to "Error", "testCatalog" to "Success")
-    val hasError = suiteResults.containsValue("Error")
-    println(hasError)
-}
+    println(suiteResults.containsValue("Error"))
 
-// 28. Отфильтруйте словарь с результатами тестирования сервисов, оставив только те тесты, которые не прошли успешно и содержат в названии “optional”.
-fun task28() {
+    // 28. Тесты не прошли успешно и содержат в названии optional
     val serviceTests = mapOf(
         "auth_test" to "Passed",
         "payment_optional_test" to "Failed",
         "logging_optional_test" to "Failed",
         "cart_optional_test" to "Passed"
     )
-    val filtered = serviceTests.filter { (name, result) ->
-        name.contains("optional", ignoreCase = true) && result != "Passed"
-    }
-    println(filtered)
+    println(serviceTests.filter { (name, res) -> name.contains("optional", ignoreCase = true) && res != "Passed" })
 }
