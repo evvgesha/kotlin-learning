@@ -2,6 +2,6 @@ package lessons.lesson14.homeworks
 
 class Party(val location: String, val attendees: Int) {
     fun details() {
-        println("Вечеринка проходит в: $location, количество гостей: $attendees")
+        println("The party is at $location with $attendees attendees.")
     }
 }

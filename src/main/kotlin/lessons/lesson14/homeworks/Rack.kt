@@ -12,27 +12,20 @@ class Rack(val maxShelves: Int) {
     }
 
     fun removeShelf(index: Int): List<String> {
-        if (index !in shelves.indices) {
-            return emptyList()
-        }
-        val removedShelf = shelves.removeAt(index)
-        return removedShelf.getItems()
+        if (index !in shelves.indices) return emptyList()
+        return shelves.removeAt(index).getItems()
     }
 
     fun addItem(item: String): Boolean {
         for (shelf in shelves) {
-            if (shelf.addItem(item)) {
-                return true
-            }
+            if (shelf.addItem(item)) return true
         }
         return false
     }
 
     fun removeItem(item: String): Boolean {
         for (shelf in shelves) {
-            if (shelf.removeItem(item)) {
-                return true
-            }
+            if (shelf.removeItem(item)) return true
         }
         return false
     }
@@ -46,29 +39,23 @@ class Rack(val maxShelves: Int) {
     }
 
     fun printContents() {
-        if (shelves.isEmpty()) {
-            println("Стеллаж пуст.")
-            return
-        }
-        println("=== Содержимое стеллажа (полок: ${shelves.size}/$maxShelves) ===")
-        shelves.forEachIndexed { index, shelf ->
-            val itemsStr = if (shelf.getItems().isEmpty()) "нет предметов" else shelf.getItems().joinToString(", ")
-            println("Полка #$index | Вместимость: ${shelf.capacity} | Свободно: ${shelf.getRemainingCapacity()} | Предметы: [$itemsStr]")
+        shelves.forEachIndexed { i, shelf ->
+            val accessiblePlace = shelf.getRemainingCapacity()
+            println("$i вместимость: ${shelf.capacity} доступно: $accessiblePlace")
+            println("Предметы: ${shelf.getItems()}")
         }
     }
 
     fun advancedRemoveShelf(index: Int): List<String> {
-        if (index !in shelves.indices) {
-            return emptyList()
-        }
+        if (index !in shelves.indices) return emptyList()
         val shelfToRemove = shelves[index]
-        val itemsToDistribute = shelfToRemove.getItems().sortedByDescending { it.length }
-        val otherShelves = shelves.filterIndexed { i, _ -> i != index }
+        val sortedItems = shelfToRemove.getItems().sortedByDescending { it.length }
+        val remainingShelves = shelves.filterIndexed { i, _ -> i != index }
         val unplacedItems = mutableListOf<String>()
 
-        for (item in itemsToDistribute) {
+        for (item in sortedItems) {
             var placed = false
-            for (shelf in otherShelves) {
+            for (shelf in remainingShelves) {
                 if (shelf.addItem(item)) {
                     placed = true
                     break
