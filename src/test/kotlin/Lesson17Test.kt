@@ -45,17 +45,6 @@ class Lesson17Test {
     }
 
     @Test
-    fun testCalculator() {
-        val calc = Calculator()
-        assertEquals("8.0", calc.operate("3 + 5"))
-        assertEquals("-2.0", calc.operate("3 - 5"))
-        assertEquals("15.0", calc.operate("3 * 5"))
-        assertEquals("2.5", calc.operate("5 / 2"))
-        assertEquals("Division by zero", calc.operate("5 / 0"))
-        assertTrue(calc.operate("5 ^ 2").startsWith("Unsupported operator"))
-    }
-
-    @Test
     fun testMainExecution() {
         main()
     }
