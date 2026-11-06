@@ -1,15 +1,9 @@
 package lessons.lesson17.homeworks
 
 abstract class BaseClass(
-    // 1. объясни, почему это поле доступно в main() для чтения из класса ChildrenClass
-    // Ответ: В ChildrenClass объявлено собственное публичное свойство `val privateVal: String`,
-    // которое перекрывает аргумент конструктора. В main() мы читаем именно свойство ChildrenClass,
-    // а не приватное поле BaseClass.
+    // 1. В ChildrenClass используется одноимённое поле, но оно не является полем privateVal из BaseClass
     private val privateVal: String,
-
-    // 2. объясни, почему это поле недоступно в main()
-    // Ответ: Модификатор protected разрешает доступ только внутри самого класса
-    // и его классов-наследников. Из внешнего кода (main) protected-поля недоступны.
+    // 2. Поля protected доступны только в самом классе и в классах наследниках
     protected val protectedVal: String,
     val publicVal: String
 ) {
@@ -26,9 +20,7 @@ abstract class BaseClass(
         "5. измени меня из функции main() через сеттер в наследнике"
 
     private var privateField =
-        "6. добавь сеттер чтобы изменить меня из main()"
-        // Ответ: private-поле доступно только внутри BaseClass. Так как BaseClass не подлежит доработке,
-        // а в наследнике к нему нет доступа, добавить сеттер или изменить его извне невозможно.
+        "6. нельзя изменить это поле из класса наследника"
 
     fun getAll(): String {
         return mapOf(
@@ -48,29 +40,23 @@ abstract class BaseClass(
         privatePrint()
     }
 
-    // 7. объясни, почему эта функция не может быть публичной
-    // Ответ: Функция возвращает экземпляр ProtectedClass, который имеет доступ protected.
-    // Публичный метод не может возвращать тип с меньшей видимостью (protected), иначе это раскроет скрытый тип наружу.
+    // 7. Потому как она возвращает protected класс, а доступ к нему есть только из текущего класса и класса наследника
     protected open fun getProtectedClass() = ProtectedClass()
 
     protected open fun verifyPublicField(value: String): Boolean {
         return value.length < 3
     }
 
-    // 8. Распечатай getAll() и объясни, почему в поле "generate" другой текст
-    // Ответ: Метод generate() объявлен как open и переопределен (override) в ChildrenClass.
-    // При вызове через экземпляр ChildrenClass срабатывает полиморфизм (динамическая диспетчеризация),
-    // и вызывается переопределенный метод дочернего класса.
+    // 8. Потому как в дочернем классе функция generate() переопределена и вызывается именно переопределённая функция
     open fun generate(): String {
         return "Это генерация из родительского класса"
     }
 
     private fun privatePrint() {
-        println("Печать из класса BaseClass")
+        println("Печать privatePrint из класса BaseClass")
     }
 
-    // 9. объясни, почему эта функция не может быть публичной или protected
-    // Ответ: Тип PrivateClass имеет модификатор private. Метод не может иметь видимость шире, чем возвращаемый им тип.
+    // 9. Потому как она возвращает приватный класс, который может быть виден только из текущего класса
     private fun getPrivateClass() = PrivateClass()
 
     protected class ProtectedClass() {}
