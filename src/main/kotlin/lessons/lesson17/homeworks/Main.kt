@@ -1,11 +1,13 @@
 package lessons.lesson17.homeworks
 
+/*
 class Equals : Operation("==") {
     override fun operate(expression: String): String {
         val operands = split(expression)
         return (operands[0] == operands[1]).toString()
     }
 }
+*/
 
 fun main() {
     val machine = GameMachine(
@@ -29,10 +31,14 @@ fun main() {
     println(children.getAll())
     children.printText()
 
+    // Задание повышенной сложности (калькулятор) — убрано из запуска, но сохранено:
+    /*
     val calculator = Calculator(listOf(Equals()))
     println(calculator.operate("10 + 5"))
     println(calculator.operate("10 - 5"))
     println(calculator.operate("10 * 5"))
     println(calculator.operate("10 / 2"))
     println(calculator.operate("10 == 10"))
+    */
 }
+
